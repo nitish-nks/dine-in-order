@@ -1,13 +1,14 @@
 package com.example.dio.dto.response;
 
 import com.example.dio.enums.UserRole;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.time.LocalDate;
-@Builder
+
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserResponse {
     public long userId;
     public String username;

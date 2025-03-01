@@ -2,7 +2,6 @@ package com.example.dio.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Getter
 @AllArgsConstructor

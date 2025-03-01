@@ -1,15 +1,16 @@
 package com.example.dio.dto.request;
 
 import com.example.dio.enums.UserRole;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
 public class RegistrationRequest {
-
+    @NotNull
+    @NotBlank
     public String username;
     public String email;
     public String password;

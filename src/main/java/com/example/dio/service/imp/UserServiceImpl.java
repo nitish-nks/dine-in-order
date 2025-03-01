@@ -23,6 +23,17 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+    private static User createUserByRole(UserRole role) {
+        User user;
+
+        switch (role) {
+            case ADMIN -> user = new Admin();
+            case STAFF -> user = new Staff();
+            default -> throw new RuntimeException("Failed to register user ,invalid user");
+        }
+        return user;
+    }
+
     @Override
     public UserResponse registerUser(RegistrationRequest registrationRequest) {
 
@@ -46,7 +57,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundByIdException("Failed to find user ,user not found by id"));
 
-        userMapper.mapToUserEntity(userRequest,user);
+        userMapper.mapToUserEntity(userRequest, user);
         userRepository.save(user);
         return userMapper.mapToUserResponse(user);
 
@@ -69,17 +80,5 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new UserNotFoundByIdException("Failed to delete user, user not found by id");
         }
-    }
-
-
-    private static User createUserByRole(UserRole role) {
-        User user;
-
-        switch (role) {
-            case ADMIN -> user = new Admin();
-            case STAFF -> user = new Staff();
-            default -> throw new RuntimeException("Failed to register user ,invalid user");
-        }
-        return user;
     }
 }
