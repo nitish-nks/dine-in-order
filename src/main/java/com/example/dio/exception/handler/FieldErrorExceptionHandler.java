@@ -8,15 +8,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RestControllerAdvice
 public class FieldErrorExceptionHandler extends ResponseEntityExceptionHandler {
-
-    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         List<FieldErrorResponse.FieldError> errors = new ArrayList<>();
         List<ObjectError> objectErrors = ex.getAllErrors();
 
@@ -37,6 +39,5 @@ public class FieldErrorExceptionHandler extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.status(status)
                 .body(errors);
-
     }
 }
