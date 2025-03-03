@@ -2,6 +2,7 @@ package com.example.dio.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,12 @@ public class AppDocumentaion {
                         - MySql Database
                         - Spring Security
                         """)
-                .version("v1");
+                .version("v1")
+                .contact(contact());
+    }
+    private Contact contact(){
+        return new Contact().email("nitishsinghz2000@gmail.com")
+                .name("Nitish Singh")
+                .url("https://github.com/nitish-nks");
     }
 }
