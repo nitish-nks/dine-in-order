@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1")
 @AllArgsConstructor
 @Tag(name = "User Controller", description = "Collection API Endpoints Dealing with user data.")
 public class UserController {
