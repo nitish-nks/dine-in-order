@@ -1,0 +1,3 @@
+MYSQL_URL=jdbc:mysql://localhost:3306/dine_in_order_db?createDatabaseIfNotExist=true
+MYSQL_USERNAME=root
+MYSQL_PASSWORD=tiger
