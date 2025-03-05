@@ -31,12 +31,12 @@ build/
 
 ## VS Code ###
 .vscode/
-.emv/
 
 .gitattributes
 .mvn
 mvnw
 mvnw.cmd
 
+.env
 
 
