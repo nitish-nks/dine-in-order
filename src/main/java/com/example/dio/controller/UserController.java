@@ -60,4 +60,5 @@ public class UserController {
         userService.deleteUserById(userId);
         return ResponseBuilder.success(HttpStatus.OK, "User Deleted", "user");
     }
+
 }
