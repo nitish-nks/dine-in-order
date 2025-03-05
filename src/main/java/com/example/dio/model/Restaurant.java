@@ -1,10 +1,7 @@
 package com.example.dio.model;
 
 import com.example.dio.enums.DietType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,8 +24,11 @@ public class Restaurant {
     private LocalTime createdAt;
     private LocalTime modifiedAt;
 
-    @ManyToMany(mappedBy = "restaurantId", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "restaurants", fetch = FetchType.EAGER)
     private List<CuisineType> cuisineTypes;
+
+    @ManyToOne(fetch =FetchType.LAZY)
+    private Admin admin;
 
 
 }
