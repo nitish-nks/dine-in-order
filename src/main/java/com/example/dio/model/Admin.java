@@ -8,8 +8,8 @@ import jakarta.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "adims")
+@Table(name = "Admins")
 public class Admin extends User {
-    @OneToMany
+    @OneToMany(mappedBy = "admin")
     private List<Restaurant> restaurants;
 }

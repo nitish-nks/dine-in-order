@@ -9,4 +9,5 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+app:
+  base-url : api/v1

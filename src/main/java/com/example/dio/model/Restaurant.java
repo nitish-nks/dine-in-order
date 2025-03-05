@@ -21,7 +21,7 @@ public class Restaurant {
     private LocalTime opensAt;
     private LocalTime closeAt;
 
-    private DietType dietTypes;
+    private List<DietType> dietTypes;
 
     private LocalTime createdAt;
     private LocalTime modifiedAt;

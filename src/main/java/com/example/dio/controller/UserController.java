@@ -35,7 +35,7 @@ public class UserController {
             })
     })
 
-    public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody@Valid RegistrationRequest registrationRequest) {
+    public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
         UserResponse response = userService.registerUser(registrationRequest);
         return ResponseBuilder.success(HttpStatus.CREATED, "User Created", response);
     }
