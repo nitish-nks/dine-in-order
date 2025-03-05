@@ -15,12 +15,14 @@ public class Restaurant {
     @Id
     private long restaurantId;
     private String name;
-    private String Address;
-    private long contactNumber;
+    private String address;
+    private String contactNumber;
     private String contactEmail;
     private LocalTime opensAt;
     private LocalTime closeAt;
-    private DietType dietType;
+
+    private DietType dietTypes;
+
     private LocalTime createdAt;
     private LocalTime modifiedAt;
 
