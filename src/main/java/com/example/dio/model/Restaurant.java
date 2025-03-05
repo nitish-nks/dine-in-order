@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,7 +28,7 @@ public class Restaurant {
     private LocalTime modifiedAt;
 
     @ManyToMany(mappedBy = "restaurantId", fetch = FetchType.EAGER)
-    private CuisineType cuisineType;
+    private List<CuisineType> cuisineTypes;
 
 
 }

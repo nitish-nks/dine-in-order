@@ -7,6 +7,8 @@ import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -16,5 +18,5 @@ public class CuisineType {
     private String cuisineName;
 
     @ManyToMany
-    private Restaurant restaurant;
+    private List<Restaurant> restaurants;
 }
