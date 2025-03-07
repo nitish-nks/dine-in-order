@@ -1,4 +1,12 @@
 package com.example.dio.exception;
 
-public class UnauthorizedUserException {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+
+@Getter
+@AllArgsConstructor
+public class UnauthorizedUserException extends RuntimeException {
+
+    private final String errorMessage;
 }
