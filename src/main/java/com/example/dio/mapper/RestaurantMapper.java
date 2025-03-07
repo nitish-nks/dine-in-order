@@ -19,12 +19,12 @@ public interface RestaurantMapper {
         return cuisineType.getCuisineName();
     }
 
-    default CuisineType mapToString(String cuisineType){
-        if(cuisineType == null){
+    default CuisineType stringToCuisineType(String cuisineName) {
+        if (cuisineName == null) {
             return null;
         }
         CuisineType cuisine = new CuisineType();
-        cuisine.setCuisineName(cuisineType);
+        cuisine.setCuisineName(cuisineName);
         return cuisine;
     }
 
