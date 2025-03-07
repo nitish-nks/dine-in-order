@@ -1,14 +1,20 @@
 package com.example.dio.service.imp;
 
 import com.example.dio.dto.request.RegistrationRequest;
+import com.example.dio.dto.request.RestaurantRequest;
 import com.example.dio.dto.request.UserRequest;
+import com.example.dio.dto.response.RestaurantResponse;
 import com.example.dio.dto.response.UserResponse;
 import com.example.dio.enums.UserRole;
+import com.example.dio.exception.UnauthorizedUserException;
 import com.example.dio.exception.UserNotFoundByIdException;
+import com.example.dio.mapper.RestaurantMapper;
 import com.example.dio.mapper.UserMapper;
 import com.example.dio.model.Admin;
+import com.example.dio.model.Restaurant;
 import com.example.dio.model.Staff;
 import com.example.dio.model.User;
+import com.example.dio.repository.RestaurantRepository;
 import com.example.dio.repository.UserRepository;
 import com.example.dio.service.UserService;
 import lombok.AllArgsConstructor;
@@ -105,4 +111,5 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundByIdException("Failed to delete user, user not found by id");
         }
     }
+
 }

@@ -1,8 +1,11 @@
 package com.example.dio.service;
 
 import com.example.dio.dto.request.RegistrationRequest;
+import com.example.dio.dto.request.RestaurantRequest;
 import com.example.dio.dto.request.UserRequest;
+import com.example.dio.dto.response.RestaurantResponse;
 import com.example.dio.dto.response.UserResponse;
+import jakarta.validation.Valid;
 
 public interface UserService {
 
