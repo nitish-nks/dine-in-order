@@ -28,7 +28,7 @@ public class Restaurant {
     private LocalTime createdAt;
     private LocalTime modifiedAt;
 
-    //not know
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "restaurant_cuisine",
@@ -41,6 +41,7 @@ public class Restaurant {
     private Admin admin;
 
     @OneToMany
+    @JoinColumn(name = "restaurant_id", nullable = false)
     private List<Tables> tables;
 
 

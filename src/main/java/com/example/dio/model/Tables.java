@@ -21,9 +21,9 @@ public class Tables {
     private long tableCapacity;
 
     @Column(name = "TableStatus")
+    @Enumerated(EnumType.STRING)
     private TableStatus tableStatus;
 
-    @Column(name = "TableOfWhichRestaurant")
     @ManyToOne
     private Restaurant restaurant;
 }
