@@ -11,10 +11,9 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -28,5 +27,14 @@ public class FoodController {
                                                                         @PathVariable Restaurant restaurantId) {
         FoodResponse foodResponse = foodService.registerFoods(foodRequest, restaurantId);
         return ResponseBuilder.success(HttpStatus.CREATED, "Food is Created", foodResponse);
+    }
+
+    @GetMapping("/food/categories")
+    public ResponseEntity<ResponseStructure<List<FoodResponse>>> getFoodsByCategories(
+            @RequestParam("category") List<String> categories) {
+        List<FoodResponse> foodResponses = foodService.getFoodsByCategories(categories);
+
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .body(ResponseStructure.create(HttpStatus.FOUND, "Food items Found", foodResponses));
     }
 }
