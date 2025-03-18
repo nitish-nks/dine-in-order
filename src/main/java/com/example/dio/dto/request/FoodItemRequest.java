@@ -27,4 +27,8 @@ public class FoodRequest {
 
     @NotEmpty(message = "At least one cuisine type must be specified")
     private String cuisineType;
+
+    @NotEmpty(message = "Categories can't be empty")
+    private List<String> categories;
+
 }
