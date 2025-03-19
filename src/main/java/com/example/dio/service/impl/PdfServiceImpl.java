@@ -1,4 +1,4 @@
-package com.example.dio.service.impl;
+package com.example.dio.service.imp;
 
 import com.example.dio.service.PdfService;
 import lombok.AllArgsConstructor;

@@ -1,16 +1,18 @@
-package com.example.dio.service.impl;
+package com.example.dio.service.imp;
 
 import com.example.dio.dto.request.FoodItemRequest;
 import com.example.dio.dto.response.FoodItemResponse;
 import com.example.dio.mapper.FoodItemMapper;
-import com.example.dio.model.*;
+import com.example.dio.model.Category;
+import com.example.dio.model.Cuisine;
+import com.example.dio.model.FoodItem;
+import com.example.dio.model.Restaurant;
 import com.example.dio.repository.CategoryRepository;
 import com.example.dio.repository.CuisineRepository;
 import com.example.dio.repository.FoodItemRepository;
 import com.example.dio.repository.RestaurantRepository;
 import com.example.dio.service.FoodItemService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,13 +30,14 @@ public class FoodItemServiceImpl implements FoodItemService {
     private final FoodItemMapper foodItemMapper;
     private final CuisineRepository cuisineRepository;
     private final CategoryRepository categoryRepository;
+
     @Transactional
     @Override
     public FoodItemResponse createFoodItem(Long restaurantId, FoodItemRequest foodItemRequest) {
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
                 .orElseThrow(() -> new RuntimeException("Restaurant not found with id: " + restaurantId));
 
-        Cuisine cuisine = cuisineRepository.findById(foodItemRequest.getCuisine())
+        Cuisine cuisine = cuisineRepository.findById(foodItemRequest.getCuisineType())
                 .orElseGet(() -> {
                     Cuisine newCuisine = new Cuisine();
                     newCuisine.setCuisine(foodItemRequest.getCuisine());
@@ -42,7 +45,7 @@ public class FoodItemServiceImpl implements FoodItemService {
                 });
 
         // Set the associations
-        FoodItem foodItem=foodItemMapper.mapToFoodItem(foodItemRequest);
+        FoodItem foodItem = foodItemMapper.mapToFoodItem(foodItemRequest);
         foodItem.setRestaurant(restaurant);
         foodItem.setCuisine(cuisine);
 
@@ -57,25 +60,24 @@ public class FoodItemServiceImpl implements FoodItemService {
 
     @Override
     public List<FoodItemResponse> getFoodItemsByCategories(List<String> categoryNames) {
-        Long categoryCount= (long) categoryNames.size();
-        List<FoodItem> foodItems = foodItemRepository.findFoodItemsByCategoryNames(categoryNames,categoryCount);
+        Long categoryCount = (long) categoryNames.size();
+        List<FoodItem> foodItems = foodItemRepository.findFoodItemsByCategoryNames(categoryNames, categoryCount);
         return foodItems.stream()
                 .map(foodItemMapper::mapToFoodItemResponse)
                 .collect(Collectors.toList());
     }
 
 
-
-    public String updateFoodAvailability(int stock,String availability){
-        availability= (stock>0)? "AVAILABLE":"OUT OF STOCK";
+    public String updateFoodAvailability(int stock, String availability) {
+        availability = (stock > 0) ? "AVAILABLE" : "OUT OF STOCK";
         return availability;
     }
 
-    private List<Category> createNonExistingCategory(List<Category> categories){
+    private List<Category> createNonExistingCategory(List<Category> categories) {
         return categories.stream()
-                .map(category->
+                .map(category ->
                         categoryRepository.findById(category.getCategory())
-                                           .orElseGet(()-> categoryRepository.save(category)))
+                                .orElseGet(() -> categoryRepository.save(category)))
                 .toList();
 
 
